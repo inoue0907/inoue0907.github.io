@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="inoue0907のプロダクト一覧">
+  <title>inoue0907 — Works</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #080808;
+      --surface: #111111;
+      --surface-2: #181818;
+      --border: #1f1f1f;
+      --border-hover: #333333;
+      --text: #e5e5e5;
+      --text-muted: #737373;
+      --text-subtle: #404040;
+      --accent: #6366f1;
+      --accent-soft: rgba(99, 102, 241, 0.12);
+      --accent-border: rgba(99, 102, 241, 0.35);
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    /* ── Header ── */
+    header {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .site-name {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+    }
+
+    .site-name strong {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    header a {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    header a:hover { color: var(--text); }
+
+    /* ── Hero ── */
+    .hero {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 5rem 2rem 3rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, #6366f1 0%, #a78bfa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 420px;
+    }
+
+    /* ── Main ── */
+    main {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+
+    /* ── Featured card ── */
+    .featured {
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2.5rem;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 2rem;
+      align-items: center;
+      transition: border-color 0.2s;
+      margin-bottom: 1.5rem;
+    }
+
+    .featured:hover { border-color: var(--border-hover); }
+
+    /* top accent line */
+    .featured::before {
+      content: '';
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 2px;
+      background: linear-gradient(90deg, #6366f1, #a78bfa, transparent);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-soft);
+      border: 1px solid var(--accent-border);
+      border-radius: 100px;
+      padding: 0.25rem 0.8rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .project-name {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: #fff;
+      margin-bottom: 0.75rem;
+    }
+
+    .project-desc {
+      font-size: 0.95rem;
+      color: #a3a3a3;
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+      max-width: 440px;
+    }
+
+    /* ── Tags ── */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .tag {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.2rem 0.55rem;
+    }
+
+    /* ── Links ── */
+    .links { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: 8px;
+      padding: 0.5rem 1.1rem;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn-primary:hover { background: #5154e0; }
+
+    .btn-ghost {
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+
+    .btn-ghost:hover { color: var(--text); border-color: var(--border-hover); }
+
+    /* ── Featured visual ── */
+    .featured-visual {
+      aspect-ratio: 16 / 10;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .slide-header {
+      height: 28px;
+      background: #1a1a2e;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+      gap: 5px;
+    }
+
+    .dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+    }
+
+    .dot-r { background: #ff5f57; }
+    .dot-y { background: #febc2e; }
+    .dot-g { background: #28c840; }
+
+    .slide-body {
+      flex: 1;
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .slide-title-bar {
+      height: 14px;
+      background: linear-gradient(90deg, #6366f1 0%, #a78bfa 60%, transparent 100%);
+      border-radius: 4px;
+      width: 70%;
+    }
+
+    .slide-line {
+      height: 7px;
+      background: var(--border);
+      border-radius: 3px;
+    }
+
+    .slide-line.w80 { width: 80%; }
+    .slide-line.w60 { width: 60%; }
+    .slide-line.w90 { width: 90%; }
+    .slide-line.w50 { width: 50%; }
+
+    /* ── Sub-projects grid ── */
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-subtle);
+      margin-bottom: 1rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+
+    .card-name {
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .card-desc {
+      font-size: 0.825rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      flex: 1;
+      margin-bottom: 1rem;
+    }
+
+    /* ── Footer ── */
+    footer {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 2rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    footer p { font-size: 0.8rem; color: var(--text-subtle); }
+
+    footer a {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+
+    footer a:hover { color: var(--text); }
+
+    /* ── Responsive ── */
+    @media (max-width: 720px) {
+      .featured {
+        grid-template-columns: 1fr;
+      }
+
+      .featured-visual { display: none; }
+
+      .hero { padding: 3.5rem 1.5rem 2rem; }
+      main { padding: 0 1.5rem 3rem; }
+      header { padding: 2rem 1.5rem 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="site-name"><strong>@inoue0907</strong> / works</div>
+    <a href="https://github.com/inoue0907" target="_blank" rel="noopener">GitHub ↗</a>
+  </header>
+
+  <div class="hero">
+    <h1>Creative<br><span>Works</span></h1>
+    <p>個人で作っているプロダクトの一覧です。</p>
+  </div>
+
+  <main>
+
+    <!-- ── Featured: MarkSlide ── -->
+    <div class="featured">
+      <div>
+        <div class="badge">★ Main Project</div>
+        <div class="project-name">MarkSlide</div>
+        <p class="project-desc">
+          Markdown からスライドを作れる Web アプリ。<br>
+          テーマ・アニメーション・PDF 出力に対応。
+        </p>
+        <div class="tags">
+          <span class="tag">Next.js</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">React</span>
+        </div>
+        <div class="links">
+          <a href="https://github.com/inoue0907/markdown-slides" class="btn btn-primary" target="_blank" rel="noopener">GitHub →</a>
+        </div>
+      </div>
+
+      <!-- decorative slide mockup -->
+      <div class="featured-visual" aria-hidden="true">
+        <div class="slide-header">
+          <div class="dot dot-r"></div>
+          <div class="dot dot-y"></div>
+          <div class="dot dot-g"></div>
+        </div>
+        <div class="slide-body">
+          <div class="slide-title-bar"></div>
+          <div class="slide-line w80"></div>
+          <div class="slide-line w60"></div>
+          <div class="slide-line w90"></div>
+          <div class="slide-line w50"></div>
+          <div style="margin-top:8px;">
+            <div class="slide-line w70" style="width:70%; height:40px; background:#1a1a2e; border-radius:6px; border:1px solid #2a2a4a;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Other Projects ── -->
+    <p class="section-label" style="margin-top: 3rem;">Other Projects</p>
+    <div class="grid">
+
+      <!-- Spotify Intro Quiz -->
+      <div class="card">
+        <div class="card-name">Spotify Intro Quiz</div>
+        <p class="card-desc">Spotify の曲のイントロを聴いて曲名を当てるクイズアプリ。</p>
+        <div class="tags" style="margin-bottom: 1rem;">
+          <span class="tag">Next.js</span>
+          <span class="tag">Spotify API</span>
+        </div>
+        <div class="links">
+          <a href="https://spotify-intro-quiz-rho.vercel.app" class="btn btn-primary" target="_blank" rel="noopener">Live →</a>
+          <a href="https://github.com/inoue0907/spotify-intro-quiz" class="btn btn-ghost" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+
+      <!-- TimeTracker -->
+      <div class="card">
+        <div class="card-name">TimeTracker</div>
+        <p class="card-desc">作業時間を記録する iOS アプリ。記録したデータを Web で可視化できる。</p>
+        <div class="tags" style="margin-bottom: 1rem;">
+          <span class="tag">Swift</span>
+          <span class="tag">iOS</span>
+        </div>
+        <div class="links">
+          <a href="https://github.com/inoue0907/TimeTracker" class="btn btn-ghost" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+
+      <!-- Mahjong Score Flash -->
+      <div class="card">
+        <div class="card-name">麻雀点数表暗記</div>
+        <p class="card-desc">麻雀の点数表をフラッシュカード形式で暗記できるシンプルな練習アプリ。</p>
+        <div class="tags" style="margin-bottom: 1rem;">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+        </div>
+        <div class="links">
+          <a href="https://github.com/inoue0907/mahjong-score-flash" class="btn btn-ghost" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+
+      <!-- Chord Ear Training -->
+      <div class="card">
+        <div class="card-name">Chord Ear Training</div>
+        <p class="card-desc">コードの音を聴いて種類を当てる、耳コピ力を鍛えるトレーニングアプリ。</p>
+        <div class="tags" style="margin-bottom: 1rem;">
+          <span class="tag">Next.js</span>
+          <span class="tag">Web Audio API</span>
+        </div>
+        <div class="links">
+          <a href="https://github.com/inoue0907/chord-ear-training" class="btn btn-ghost" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2026 inoue0907</p>
+    <a href="https://github.com/inoue0907" target="_blank" rel="noopener">github.com/inoue0907</a>
+  </footer>
+
+</body>
+</html>
